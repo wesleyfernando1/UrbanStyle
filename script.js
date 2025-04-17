@@ -1,5 +1,13 @@
 let carrinho = [];
 
+document.addEventListener('DOMContentLoaded', () => {
+  const carrinhoSalvo = localStorage.getItem('carrinho');
+  if (carrinhoSalvo) {
+    carrinho = JSON.parse(carrinhoSalvo);
+    atualizarCarrinho();
+  }
+});
+
 function adicionarAoCarrinho(nome, preco) {
   const itemExistente = carrinho.find(item => item.nome === nome);
   if (itemExistente) {
@@ -8,93 +16,85 @@ function adicionarAoCarrinho(nome, preco) {
     carrinho.push({ nome, preco, quantidade: 1 });
   }
   atualizarCarrinho();
-  mostrarNotificacao("Produto adicionado ao carrinho!");
+  exibirNotificacao(`${nome} adicionado ao carrinho!`);
 }
 
-function removerItem(nome) {
-  carrinho = carrinho.filter(item => item.nome !== nome);
-  atualizarCarrinho();
+function atualizarCarrinho() {
+  const lista = document.getElementById('itens-carrinho');
+  const totalSpan = document.getElementById('total');
+  const quantidadeSpan = document.getElementById('quantidade');
+
+  lista.innerHTML = '';
+  let total = 0;
+  let quantidadeTotal = 0;
+
+  carrinho.forEach(item => {
+    const li = document.createElement('li');
+    li.classList.add('item-animado');
+    li.innerHTML = `
+      ${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}
+      <button onclick="aumentarQuantidade('${item.nome}')">+</button>
+      <button onclick="diminuirQuantidade('${item.nome}')">-</button>
+      <button class="remover" onclick="removerItem('${item.nome}')">x</button>
+    `;
+    lista.appendChild(li);
+
+    total += item.preco * item.quantidade;
+    quantidadeTotal += item.quantidade;
+  });
+
+  totalSpan.textContent = total.toFixed(2);
+  quantidadeSpan.textContent = quantidadeTotal;
+
+  const carrinhoDiv = document.getElementById('carrinho');
+  carrinhoDiv.style.display = carrinho.length ? 'block' : 'none';
+
+  localStorage.setItem('carrinho', JSON.stringify(carrinho)); // <--- aqui salvamos
 }
 
-function mudarQuantidade(nome, delta) {
-  const item = carrinho.find(item => item.nome === nome);
+function aumentarQuantidade(nome) {
+  const item = carrinho.find(i => i.nome === nome);
   if (item) {
-    item.quantidade += delta;
-    if (item.quantidade <= 0) removerItem(nome);
+    item.quantidade++;
+    atualizarCarrinho();
+  }
+}
+
+function diminuirQuantidade(nome) {
+  const item = carrinho.find(i => i.nome === nome);
+  if (item && item.quantidade > 1) {
+    item.quantidade--;
+  } else {
+    carrinho = carrinho.filter(i => i.nome !== nome);
   }
   atualizarCarrinho();
 }
 
-function atualizarCarrinho() {
-  const lista = document.getElementById("itens-carrinho");
-  const total = document.getElementById("total");
-  const quantidadeSpan = document.getElementById("quantidade");
-  const carrinhoDiv = document.getElementById("carrinho");
-
-  lista.innerHTML = "";
-
-  let totalValor = 0;
-  let totalItens = 0;
-
-  carrinho.forEach(item => {
-    totalValor += item.preco * item.quantidade;
-    totalItens += item.quantidade;
-
-    const li = document.createElement("li");
-    li.innerHTML = `
-      ${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}
-      <button onclick="mudarQuantidade('${item.nome}', 1)">+</button>
-      <button onclick="mudarQuantidade('${item.nome}', -1)">-</button>
-      <button onclick="removerItem('${item.nome}')">Remover</button>
-    `;
-    lista.appendChild(li);
-  });
-
-  total.textContent = totalValor.toFixed(2);
-  quantidadeSpan.textContent = totalItens;
-  carrinhoDiv.style.display = carrinho.length > 0 ? "block" : "none";
-}
-
-function calcularTotal() {
-  return carrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0);
+function removerItem(nome) {
+  carrinho = carrinho.filter(i => i.nome !== nome);
+  atualizarCarrinho();
 }
 
 function finalizarCompra() {
-  localStorage.setItem('compraFinalizada', 'true');
-  window.location.href = 'agradecimento.html';
-}
+  if (carrinho.length === 0) return;
 
-function filtrarProdutos(categoria) {
-  const produtos = document.querySelectorAll(".produto");
+  carrinho = [];
+  atualizarCarrinho();
+  localStorage.removeItem('carrinho');
 
-  produtos.forEach(produto => {
-    if (categoria === 'todos' || produto.classList.contains(categoria)) {
-      produto.style.display = "block";
-    } else {
-      produto.style.display = "none";
-    }
-  });
-}
-
-function alternarModo() {
-  document.body.classList.toggle('escuro');
-
-  const botao = document.getElementById("modo-escuro");
-  botao.textContent = document.body.classList.contains('escuro')
-    ? '☀️ Modo Claro'
-    : '🌙 Modo Escuro';
+  document.getElementById('modal-confirmacao').style.display = 'block';
 }
 
 function fecharModal() {
-  document.getElementById("modal-confirmacao").style.display = "none";
+  document.getElementById('modal-confirmacao').style.display = 'none';
 }
 
-function mostrarNotificacao(mensagem) {
+function exibirNotificacao(mensagem) {
   const notificacao = document.getElementById('notificacao');
   notificacao.textContent = mensagem;
   notificacao.classList.add('ativa');
 
   setTimeout(() => {
     notificacao.classList.remove('ativa');
-  }, 2500);
+  }, 3000);
 }
