@@ -59,3 +59,21 @@ function alternarModo() {
     botao.textContent = '🌙 Modo Escuro';
   }
 }
+function finalizarCompra() {
+  if (quantidadeTotal === 0) {
+    alert("Seu carrinho está vazio!");
+    return;
+  }
+
+  const confirmacao = confirm(`Você deseja finalizar a compra com total de R$ ${totalValor.toFixed(2)}?`);
+  
+  if (confirmacao) {
+    alert("Compra finalizada com sucesso! Obrigado pela preferência 😊");
+
+    // Limpa carrinho
+    document.getElementById("itens-carrinho").innerHTML = "";
+    quantidadeTotal = 0;
+    totalValor = 0;
+    atualizarCarrinho();
+  }
+}
