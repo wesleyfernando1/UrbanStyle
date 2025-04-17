@@ -15,32 +15,39 @@
     <nav>
       <a href="#">Início</a>
       <a href="#produtos">Produtos</a>
-      <a href="#contato">Contato</a>
+      <a href="contato.html">Contato</a>
     </nav>
   </header>
 
   <main>
+    <section id="filtros">
+      <button onclick="filtrarProdutos('todos')">Todos</button>
+      <button onclick="filtrarProdutos('camisa')">Camisas</button>
+      <button onclick="filtrarProdutos('calca')">Calças</button>
+      <button onclick="filtrarProdutos('vestido')">Vestidos</button>
+      <button onclick="filtrarProdutos('blusa')">Blusas</button>
+    </section>
+
     <section id="produtos" class="produtos">
-      <!-- PRODUTOS -->
-      <div class="produto">
+      <div class="produto camisa">
         <img src="imagens/camisa1.jpg" alt="Camisa Branca" />
         <h2>Camisa Branca</h2>
         <p>R$ 79,90</p>
         <button onclick="adicionarAoCarrinho('Camisa Branca')">Comprar</button>
       </div>
-      <div class="produto">
+      <div class="produto calca">
         <img src="imagens/calca1.jpg" alt="Calça Jeans" />
         <h2>Calça Jeans</h2>
         <p>R$ 129,90</p>
         <button onclick="adicionarAoCarrinho('Calça Jeans')">Comprar</button>
       </div>
-      <div class="produto">
+      <div class="produto vestido">
         <img src="imagens/vestido1.jpg" alt="Vestido Floral" />
         <h2>Vestido Floral</h2>
         <p>R$ 149,90</p>
         <button onclick="adicionarAoCarrinho('Vestido Floral')">Comprar</button>
       </div>
-      <div class="produto">
+      <div class="produto blusa">
         <img src="imagens/blusa1.jpg" alt="Blusa Rosa" />
         <h2>Blusa Rosa</h2>
         <p>R$ 69,90</p>
@@ -51,16 +58,7 @@
     <section id="carrinho">
       <h2><i class="fas fa-shopping-cart"></i> Carrinho</h2>
       <ul id="itens-carrinho"></ul>
-    </section>
-
-    <section id="contato">
-      <h2><i class="fas fa-envelope"></i> Fale Conosco</h2>
-      <form>
-        <input type="text" placeholder="Seu nome" required />
-        <input type="email" placeholder="Seu e-mail" required />
-        <textarea placeholder="Sua mensagem..." required></textarea>
-        <button type="submit">Enviar</button>
-      </form>
+      <p>Total de itens: <span id="quantidade">0</span></p>
     </section>
   </main>
 
@@ -68,4 +66,6 @@
     <p>&copy; 2025 Loja Fashion. Todos os direitos reservados.</p>
   </footer>
 
-  <script src="
+  <script src="script.js"></script>
+</body>
+</html>
