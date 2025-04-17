@@ -160,3 +160,21 @@ function atualizarCarrinho() {
 
   total.textContent = totalValor.toFixed(2);
 }
+
+function finalizarCompra() {
+  if (carrinho.length === 0) {
+    alert("Seu carrinho está vazio.");
+    return;
+  }
+
+  // Exibe modal
+  document.getElementById("modal-confirmacao").style.display = "block";
+
+  // Limpa o carrinho
+  carrinho = [];
+  atualizarCarrinho();
+}
+
+function fecharModal() {
+  document.getElementById("modal-confirmacao").style.display = "none";
+}
