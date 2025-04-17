@@ -34,9 +34,35 @@ function removerItem(botao, preco) {
 }
 
 function atualizarCarrinho() {
-  document.getElementById("quantidade").textContent = quantidadeTotal;
-  document.getElementById("total").textContent = totalValor.toFixed(2);
+  const lista = document.getElementById("itens-carrinho");
+  const total = document.getElementById("total");
+  const carrinhoDiv = document.getElementById("carrinho");
+
+  lista.innerHTML = "";
+
+  let totalValor = 0;
+  carrinho.forEach(item => {
+    totalValor += item.preco * item.quantidade;
+    const li = document.createElement("li");
+    li.innerHTML = `
+      ${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}
+      <button onclick="mudarQuantidade('${item.nome}', 1)">+</button>
+      <button onclick="mudarQuantidade('${item.nome}', -1)">-</button>
+      <button onclick="removerItem('${item.nome}')">Remover</button>
+    `;
+    lista.appendChild(li);
+  });
+
+  total.textContent = totalValor.toFixed(2);
+
+  // só mostra o carrinho se tiver item
+  if (carrinho.length > 0) {
+    carrinhoDiv.style.display = "block";
+  } else {
+    carrinhoDiv.style.display = "none";
+  }
 }
+
 
 function filtrarProdutos(categoria) {
   const produtos = document.querySelectorAll('.produto');
