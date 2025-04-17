@@ -77,3 +77,14 @@ function finalizarCompra() {
     atualizarCarrinho();
   }
 }
+function filtrarProdutos(categoria) {
+  const produtos = document.querySelectorAll(".produto");
+  
+  produtos.forEach(produto => {
+    if (categoria === 'todos') {
+      produto.style.display = "block";
+    } else {
+      produto.style.display = produto.classList.contains(categoria) ? "block" : "none";
+    }
+  });
+}
