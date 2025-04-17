@@ -88,3 +88,49 @@ function filtrarProdutos(categoria) {
     }
   });
 }
+let carrinho = [];
+
+function adicionarAoCarrinho(nome, preco) {
+  const itemExistente = carrinho.find(item => item.nome === nome);
+  if (itemExistente) {
+    itemExistente.quantidade++;
+  } else {
+    carrinho.push({ nome, preco, quantidade: 1 });
+  }
+  atualizarCarrinho();
+}
+
+function removerItem(nome) {
+  carrinho = carrinho.filter(item => item.nome !== nome);
+  atualizarCarrinho();
+}
+
+function mudarQuantidade(nome, delta) {
+  const item = carrinho.find(item => item.nome === nome);
+  if (item) {
+    item.quantidade += delta;
+    if (item.quantidade <= 0) removerItem(nome);
+  }
+  atualizarCarrinho();
+}
+
+function atualizarCarrinho() {
+  const lista = document.getElementById("itens-carrinho");
+  const total = document.getElementById("total");
+  lista.innerHTML = "";
+
+  let totalValor = 0;
+  carrinho.forEach(item => {
+    totalValor += item.preco * item.quantidade;
+    const li = document.createElement("li");
+    li.innerHTML = `
+      ${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}
+      <button onclick="mudarQuantidade('${item.nome}', 1)">+</button>
+      <button onclick="mudarQuantidade('${item.nome}', -1)">-</button>
+      <button onclick="removerItem('${item.nome}')">Remover</button>
+    `;
+    lista.appendChild(li);
+  });
+
+  total.textContent = totalValor.toFixed(2);
+}
