@@ -264,3 +264,22 @@ box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
   color: #00ffcc;
   transform: scale(1.05);
 }
+.filtros {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.filtros button {
+  padding: 10px 20px;
+  margin: 0 5px;
+  background-color: #00ffcc;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.filtros button:hover {
+  background-color: #00ddaa;
+}
