@@ -26,6 +26,16 @@ nav a {
 main {
   padding: 2rem;
 }
+#carrinho .remover {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
 
 #filtros {
   text-align: center;
