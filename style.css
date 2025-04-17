@@ -122,3 +122,42 @@ footer {
   cursor: pointer;
   font-size: 0.9rem;
 }
+/* Botão modo escuro */
+#modo-escuro {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  padding: 8px 14px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 999;
+  transition: all 0.3s ease;
+}
+
+#modo-escuro:hover {
+  background-color: #555;
+}
+
+/* Modo escuro */
+body.escuro {
+  background-color: #111;
+  color: #f1f1f1;
+  transition: background-color 0.4s, color 0.4s;
+}
+
+body.escuro header,
+body.escuro nav,
+body.escuro footer,
+body.escuro section {
+  background-color: #1c1c1c;
+  color: #fff;
+}
+
+body.escuro .produto,
+body.escuro #carrinho {
+  background-color: #222;
+  border-color: #444;
+}
