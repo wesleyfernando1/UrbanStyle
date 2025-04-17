@@ -13,16 +13,16 @@
 <body>
   <button id="modo-escuro" onclick="alternarModo()">🌙 Modo Escuro</button>
 
-  <header>
+  <header role="banner" aria-label="Cabeçalho do site">
     <h1><i class="fas fa-tshirt"></i> Loja Fashion</h1>
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Menu de navegação principal">
       <a href="index.html">Home</a>
       <a href="contato.html">Contato</a>
     </nav>
   </header>
 
-  <main>
-    <section id="filtros">
+  <main role="main" aria-label="Conteúdo principal">
+    <section id="filtros" aria-label="Filtros de categorias">
       <button onclick="filtrarProdutos('todos')">Todos</button>
       <button onclick="filtrarProdutos('camiseta')">Camisetas</button>
       <button onclick="filtrarProdutos('calca')">Calças</button>
@@ -31,37 +31,37 @@
       <button onclick="filtrarProdutos('tenis')">Tênis</button>
     </section>
 
-    <section id="produtos" class="produtos">
+    <section id="produtos" class="produtos" aria-label="Lista de produtos">
       <div class="produto camiseta">
-        <img src="img/camiseta1.jpg" alt="Camiseta">
+        <img src="img/camiseta1.jpg" alt="Camisa branca de algodão">
         <h3>Camisa Branca</h3>
         <p>R$ 79,90</p>
         <button onclick="adicionarAoCarrinho('Camisa Branca', 79.90)">Comprar</button>
       </div>
 
       <div class="produto camiseta">
-        <img src="img/camiseta1.jpg" alt="Camiseta">
+        <img src="img/camiseta1.jpg" alt="Camiseta oversized preta básica">
         <h3>Camiseta Oversized</h3>
         <p>R$ 79,90</p>
         <button onclick="adicionarAoCarrinho('Camiseta Oversized', 79.90)">Comprar</button>
       </div>
 
       <div class="produto camiseta">
-        <img src="img/camiseta1.jpg" alt="Camiseta">
+        <img src="img/camiseta1.jpg" alt="Camiseta preta casual">
         <h3>Camiseta Preta</h3>
         <p>R$ 79,90</p>
         <button onclick="adicionarAoCarrinho('Camiseta Preta', 79.90)">Comprar</button>
       </div>
 
       <div class="produto camiseta">
-        <img src="img/camiseta1.jpg" alt="Camiseta">
+        <img src="img/camiseta1.jpg" alt="Camiseta polo azul marinho">
         <h3>Camiseta Polo</h3>
         <p>R$ 69,90</p>
         <button onclick="adicionarAoCarrinho('Camiseta Polo', 69.90)">Comprar</button>
       </div>
     </section>
 
-    <section id="carrinho">
+    <section id="carrinho" aria-label="Carrinho de compras">
       <h2><i class="fas fa-shopping-cart"></i> Carrinho</h2>
       <ul id="itens-carrinho"></ul>
       <p>Total de itens: <span id="quantidade">0</span></p>
@@ -69,9 +69,9 @@
       <button onclick="finalizarCompra()" class="btn-finalizar">Finalizar Compra</button>
 
       <!-- Modal de Confirmação -->
-      <div id="modal-confirmacao" class="modal">
+      <div id="modal-confirmacao" class="modal" role="dialog" aria-label="Confirmação de compra">
         <div class="modal-conteudo">
-          <span class="fechar" onclick="fecharModal()">&times;</span>
+          <span class="fechar" onclick="fecharModal()" aria-label="Fechar janela">&times;</span>
           <h2>Pedido confirmado!</h2>
           <p>Obrigado por comprar com a gente 😄</p>
         </div>
@@ -79,7 +79,7 @@
     </section>
   </main>
 
-  <footer>
+  <footer role="contentinfo" aria-label="Rodapé do site">
     <p>&copy; 2025 Loja Fashion. Todos os direitos reservados.</p>
   </footer>
 
