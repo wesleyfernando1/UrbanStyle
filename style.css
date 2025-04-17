@@ -336,3 +336,25 @@ footer {
     right: 10px;
   }
 }
+.notificacao {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #28a745;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  font-weight: bold;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  transform: translateY(20px);
+  z-index: 10000;
+}
+
+.notificacao.ativa {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
