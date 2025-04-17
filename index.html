@@ -83,6 +83,17 @@
   <h2>Carrinho de Compras</h2>
   <ul id="itens-carrinho"></ul>
   <p><strong>Total:</strong> R$ <span id="total">0.00</span></p>
+
+  <button id="finalizar" onclick="finalizarCompra()">Finalizar Compra</button>
+
+  <!-- Modal de Confirmação -->
+  <div id="modal-confirmacao" class="modal">
+    <div class="modal-conteudo">
+      <span class="fechar" onclick="fecharModal()">&times;</span>
+      <h2>Pedido confirmado!</h2>
+      <p>Obrigado por comprar com a gente 😄</p>
+    </div>
+  </div>
 </div>
 
   <script src="script.js"></script>
