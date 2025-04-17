@@ -283,3 +283,41 @@ box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
 .filtros button:hover {
   background-color: #00ddaa;
 }
+
+#carrinho {
+  background-color: #fff;
+  border: 2px solid #111;
+  border-radius: 12px;
+  padding: 16px;
+  max-width: 400px;
+  margin: 40px auto;
+  box-shadow: 0 0 12px rgba(0,0,0,0.1);
+  display: none; /* começa escondido */
+}
+
+#carrinho h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+#itens-carrinho li {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+#itens-carrinho button {
+  margin-left: 5px;
+  padding: 4px 8px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: none;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+#itens-carrinho button:hover {
+  background-color: #555;
+}
