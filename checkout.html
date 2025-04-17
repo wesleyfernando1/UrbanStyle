@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Finalizar Compra - Loja Fashion</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🛒 Finalizar Compra</h1>
+    <nav>
+      <a href="index.html">← Voltar para Loja</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Resumo do Pedido</h2>
+      <ul id="resumo-carrinho"></ul>
+      <p><strong>Total: R$ <span id="total-checkout">0.00</span></strong></p>
+    </section>
+
+    <section>
+      <h2>Seus Dados</h2>
+      <form id="form-checkout">
+        <label>Nome:
+          <input type="text" required />
+        </label><br/>
+        <label>E-mail:
+          <input type="email" required />
+        </label><br/>
+        <label>Endereço:
+          <textarea required></textarea>
+        </label><br/>
+        <button type="submit">Confirmar Pedido</button>
+      </form>
+    </section>
+
+    <div id="confirmacao" class="modal" style="display:none;">
+      <div class="modal-conteudo">
+        <h2>Pedido Confirmado!</h2>
+        <p>Obrigado por comprar conosco 😄</p>
+        <a href="index.html">Voltar para a loja</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const resumo = document.getElementById('resumo-carrinho');
+    const totalCheckout = document.getElementById('total-checkout');
+    const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+    let total = 0;
+    carrinho.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}`;
+      resumo.appendChild(li);
+      total += item.preco * item.quantidade;
+    });
+    totalCheckout.textContent = total.toFixed(2);
+
+    const form = document.getElementById('form-checkout');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      localStorage.removeItem('carrinho');
+      document.getElementById('confirmacao').style.display = 'block';
+    });
+  </script>
+</body>
+</html>
