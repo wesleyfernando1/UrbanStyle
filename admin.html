@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin - Loja Fashion</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Administração da Loja</h1>
+    <nav>
+      <a href="index.html">Voltar à loja</a>
+    </nav>
+  </header>
+
+  <main style="max-width: 600px; margin: auto;">
+    <h2>Adicionar Produto (modo visual ainda não salva de verdade)</h2>
+    <form id="form-produto">
+      <input type="text" placeholder="Nome do produto" id="nome-produto" required />
+      <input type="number" placeholder="Preço (ex: 79.90)" id="preco-produto" required />
+      <input type="text" placeholder="Categoria (ex: camisa)" id="categoria-produto" required />
+      <input type="text" placeholder="URL da imagem" id="imagem-produto" required />
+      <button type="submit">Adicionar Produto</button>
+    </form>
+
+    <div id="preview-produto"></div>
+  </main>
+
+  <script>
+    document.getElementById("form-produto").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const nome = document.getElementById("nome-produto").value;
+      const preco = parseFloat(document.getElementById("preco-produto").value).toFixed(2);
+      const categoria = document.getElementById("categoria-produto").value;
+      const imagem = document.getElementById("imagem-produto").value;
+
+      const htmlPreview = `
+        <div class="produto ${categoria}">
+          <img src="${imagem}" alt="${nome}" />
+          <h2>${nome}</h2>
+          <p>R$ ${preco}</p>
+          <button onclick="adicionarAoCarrinho('${nome}')">Comprar</button>
+        </div>
+      `;
+
+      document.getElementById("preview-produto").innerHTML = htmlPreview;
+    });
+  </script>
+</body>
+</html>
