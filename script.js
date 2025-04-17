@@ -53,10 +53,16 @@ function calcularTotal() {
 }
 
 function finalizarCompra() {
-  if (carrinho.length === 0) {
-    alert("Seu carrinho está vazio.");
-    return;
-  }
+  // Limpa o carrinho
+  carrinho = [];
+  atualizarCarrinho();
+
+  // Salva no localStorage para mostrar no agradecimento se quiser
+  localStorage.setItem('compraFinalizada', 'true');
+
+  // Redireciona para a página de agradecimento
+  window.location.href = 'agradecimento.html';
+}
 
   const confirmacao = confirm(`Você deseja finalizar a compra com total de R$ ${calcularTotal().toFixed(2)}?`);
   if (confirmacao) {
