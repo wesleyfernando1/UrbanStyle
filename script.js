@@ -96,3 +96,12 @@ function alternarModo() {
 function fecharModal() {
   document.getElementById("modal-confirmacao").style.display = "none";
 }
+function mostrarNotificacao(mensagem) {
+  const notificacao = document.getElementById('notificacao');
+  notificacao.textContent = mensagem;
+  notificacao.classList.add('ativa');
+
+  setTimeout(() => {
+    notificacao.classList.remove('ativa');
+  }, 2500);
+}
