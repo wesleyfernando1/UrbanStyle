@@ -143,6 +143,8 @@ function mudarQuantidade(nome, delta) {
 function atualizarCarrinho() {
   const lista = document.getElementById("itens-carrinho");
   const total = document.getElementById("total");
+  const carrinhoDiv = document.getElementById("carrinho");
+
   lista.innerHTML = "";
 
   let totalValor = 0;
@@ -159,6 +161,7 @@ function atualizarCarrinho() {
   });
 
   total.textContent = totalValor.toFixed(2);
+  carrinhoDiv.style.display = carrinho.length > 0 ? "block" : "none";
 }
 
 function finalizarCompra() {
@@ -167,12 +170,33 @@ function finalizarCompra() {
     return;
   }
 
-  // Exibe modal
-  document.getElementById("modal-confirmacao").style.display = "block";
+  const confirmacao = confirm(`Você deseja finalizar a compra com total de R$ ${calcularTotal().toFixed(2)}?`);
+  if (confirmacao) {
+    alert("Compra finalizada com sucesso! Obrigado pela preferência 😊");
+    carrinho = [];
+    atualizarCarrinho();
+  }
+}
 
-  // Limpa o carrinho
-  carrinho = [];
-  atualizarCarrinho();
+function calcularTotal() {
+  return carrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0);
+}
+
+function filtrarProdutos(categoria) {
+  const produtos = document.querySelectorAll(".produto");
+  produtos.forEach(produto => {
+    produto.style.display = categoria === 'todos' || produto.classList.contains(categoria)
+      ? "block"
+      : "none";
+  });
+}
+
+function alternarModo() {
+  document.body.classList.toggle('escuro');
+  const botao = document.getElementById("modo-escuro");
+  botao.textContent = document.body.classList.contains('escuro')
+    ? '☀️ Modo Claro'
+    : '🌙 Modo Escuro';
 }
 
 function fecharModal() {
