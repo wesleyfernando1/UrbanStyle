@@ -5,19 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Loja Fashion</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2e0b6e6fd.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <header>
-    <h1>Loja Fashion</h1>
+    <h1><i class="fas fa-tshirt"></i> Loja Fashion</h1>
     <nav>
       <a href="#">Início</a>
-      <a href="#">Produtos</a>
-      <a href="#">Contato</a>
+      <a href="#produtos">Produtos</a>
+      <a href="#contato">Contato</a>
     </nav>
   </header>
 
   <main>
-    <section class="produtos">
+    <section id="produtos" class="produtos">
+      <!-- PRODUTOS -->
       <div class="produto">
         <img src="imagens/camisa1.jpg" alt="Camisa Branca" />
         <h2>Camisa Branca</h2>
@@ -30,18 +34,38 @@
         <p>R$ 129,90</p>
         <button onclick="adicionarAoCarrinho('Calça Jeans')">Comprar</button>
       </div>
+      <div class="produto">
+        <img src="imagens/vestido1.jpg" alt="Vestido Floral" />
+        <h2>Vestido Floral</h2>
+        <p>R$ 149,90</p>
+        <button onclick="adicionarAoCarrinho('Vestido Floral')">Comprar</button>
+      </div>
+      <div class="produto">
+        <img src="imagens/blusa1.jpg" alt="Blusa Rosa" />
+        <h2>Blusa Rosa</h2>
+        <p>R$ 69,90</p>
+        <button onclick="adicionarAoCarrinho('Blusa Rosa')">Comprar</button>
+      </div>
     </section>
 
     <section id="carrinho">
-      <h2>Carrinho</h2>
+      <h2><i class="fas fa-shopping-cart"></i> Carrinho</h2>
       <ul id="itens-carrinho"></ul>
+    </section>
+
+    <section id="contato">
+      <h2><i class="fas fa-envelope"></i> Fale Conosco</h2>
+      <form>
+        <input type="text" placeholder="Seu nome" required />
+        <input type="email" placeholder="Seu e-mail" required />
+        <textarea placeholder="Sua mensagem..." required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 Loja Fashion</p>
+    <p>&copy; 2025 Loja Fashion. Todos os direitos reservados.</p>
   </footer>
 
-  <script src="script.js"></script>
-</body>
-</html>
+  <script src="
