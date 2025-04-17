@@ -8,6 +8,7 @@ function adicionarAoCarrinho(nome, preco) {
     carrinho.push({ nome, preco, quantidade: 1 });
   }
   atualizarCarrinho();
+  mostrarNotificacao("Produto adicionado ao carrinho!");
 }
 
 function removerItem(nome) {
@@ -27,13 +28,18 @@ function mudarQuantidade(nome, delta) {
 function atualizarCarrinho() {
   const lista = document.getElementById("itens-carrinho");
   const total = document.getElementById("total");
+  const quantidadeSpan = document.getElementById("quantidade");
   const carrinhoDiv = document.getElementById("carrinho");
 
   lista.innerHTML = "";
 
   let totalValor = 0;
+  let totalItens = 0;
+
   carrinho.forEach(item => {
     totalValor += item.preco * item.quantidade;
+    totalItens += item.quantidade;
+
     const li = document.createElement("li");
     li.innerHTML = `
       ${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}
@@ -45,6 +51,7 @@ function atualizarCarrinho() {
   });
 
   total.textContent = totalValor.toFixed(2);
+  quantidadeSpan.textContent = totalItens;
   carrinhoDiv.style.display = carrinho.length > 0 ? "block" : "none";
 }
 
@@ -53,28 +60,13 @@ function calcularTotal() {
 }
 
 function finalizarCompra() {
-  // Limpa o carrinho
-  carrinho = [];
-  atualizarCarrinho();
-
-  // Salva no localStorage para mostrar no agradecimento se quiser
   localStorage.setItem('compraFinalizada', 'true');
-
-  // Redireciona para a página de agradecimento
   window.location.href = 'agradecimento.html';
-}
-
-  const confirmacao = confirm(`Você deseja finalizar a compra com total de R$ ${calcularTotal().toFixed(2)}?`);
-  if (confirmacao) {
-    alert("Compra finalizada com sucesso! Obrigado pela preferência 😊");
-    carrinho = [];
-    atualizarCarrinho();
-  }
 }
 
 function filtrarProdutos(categoria) {
   const produtos = document.querySelectorAll(".produto");
-  
+
   produtos.forEach(produto => {
     if (categoria === 'todos' || produto.classList.contains(categoria)) {
       produto.style.display = "block";
@@ -96,6 +88,7 @@ function alternarModo() {
 function fecharModal() {
   document.getElementById("modal-confirmacao").style.display = "none";
 }
+
 function mostrarNotificacao(mensagem) {
   const notificacao = document.getElementById('notificacao');
   notificacao.textContent = mensagem;
