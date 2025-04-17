@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contato | Loja Online</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .form-contato {
+      max-width: 500px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .form-contato h2 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .form-contato input,
+    .form-contato textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .form-contato button {
+      background-color: #111;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .form-contato button:hover {
+      background-color: #333;
+    }
+
+    .mensagem-sucesso {
+      text-align: center;
+      color: green;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-contato">
+    <h2>Entre em Contato</h2>
+    <form id="formContato">
+      <input type="text" name="nome" placeholder="Seu nome" required />
+      <input type="email" name="email" placeholder="Seu e-mail" required />
+      <textarea name="mensagem" rows="5" placeholder="Sua mensagem" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+    <div id="mensagemSucesso" class="mensagem-sucesso" style="display:none;">
+      Mensagem enviada com sucesso! ✅
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("formContato").addEventListener("submit", function (e) {
+      e.preventDefault();
+      document.getElementById("mensagemSucesso").style.display = "block";
+      this.reset();
+    });
+  </script>
+</body>
+</html>
