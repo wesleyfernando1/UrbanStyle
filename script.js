@@ -12,6 +12,8 @@ function adicionarAoCarrinho(produto) {
   const lista = document.getElementById("itens-carrinho");
   const item = document.createElement("li");
 
+  item.classList.add("item-animado"); // <-- animação
+
   item.innerHTML = `
     ${produto} - R$ ${precos[produto].toFixed(2)}
     <button class="remover" onclick="removerItem(this, ${precos[produto]})">Remover</button>
