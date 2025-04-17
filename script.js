@@ -47,3 +47,13 @@ function filtrarProdutos(categoria) {
     }
   });
 }
+function alternarModo() {
+  document.body.classList.toggle('escuro');
+
+  const botao = document.getElementById("modo-escuro");
+  if (document.body.classList.contains('escuro')) {
+    botao.textContent = '☀️ Modo Claro';
+  } else {
+    botao.textContent = '🌙 Modo Escuro';
+  }
+}
