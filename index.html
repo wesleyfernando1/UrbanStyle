@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loja Fashion</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Loja Fashion</h1>
+    <nav>
+      <a href="#">Início</a>
+      <a href="#">Produtos</a>
+      <a href="#">Contato</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="produtos">
+      <div class="produto">
+        <img src="imagens/camisa1.jpg" alt="Camisa Branca" />
+        <h2>Camisa Branca</h2>
+        <p>R$ 79,90</p>
+        <button onclick="adicionarAoCarrinho('Camisa Branca')">Comprar</button>
+      </div>
+      <div class="produto">
+        <img src="imagens/calca1.jpg" alt="Calça Jeans" />
+        <h2>Calça Jeans</h2>
+        <p>R$ 129,90</p>
+        <button onclick="adicionarAoCarrinho('Calça Jeans')">Comprar</button>
+      </div>
+    </section>
+
+    <section id="carrinho">
+      <h2>Carrinho</h2>
+      <ul id="itens-carrinho"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Loja Fashion</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
