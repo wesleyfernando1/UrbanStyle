@@ -15,86 +15,73 @@
 
   <header>
     <h1><i class="fas fa-tshirt"></i> Loja Fashion</h1>
-<nav class="navbar">
-  <a href="index.html">Home</a>
-  <a href="contato.html">Contato</a>
-</nav>
-
+    <nav class="navbar">
+      <a href="index.html">Home</a>
+      <a href="contato.html">Contato</a>
+    </nav>
   </header>
 
   <main>
     <section id="filtros">
       <button onclick="filtrarProdutos('todos')">Todos</button>
-      <button onclick="filtrarProdutos('camisa')">Camisas</button>
+      <button onclick="filtrarProdutos('camiseta')">Camisetas</button>
       <button onclick="filtrarProdutos('calca')">Calças</button>
       <button onclick="filtrarProdutos('vestido')">Vestidos</button>
       <button onclick="filtrarProdutos('blusa')">Blusas</button>
+      <button onclick="filtrarProdutos('tenis')">Tênis</button>
     </section>
 
     <section id="produtos" class="produtos">
-      <div class="filtros">
-  <button onclick="filtrarProdutos('todos')">Todos</button>
-  <button onclick="filtrarProdutos('camiseta')">Camisetas</button>
-  <button onclick="filtrarProdutos('calca')">Calças</button>
-  <button onclick="filtrarProdutos('tenis')">Tênis</button>
-</div>
-   <div class="produto camiseta">
-  <img src="img/camiseta1.jpg" alt="Camiseta">
-  <h3>Camiseta Oversized</h3>
-        <p>R$ 79,90</p>
-        <button onclick="adicionarAoCarrinho('Camisa Branca')">Comprar</button>
-      </div>
-<div class="produto camiseta">
-  <img src="img/camiseta1.jpg" alt="Camiseta">
-  <h3>Camiseta Oversized</h3>
-  <p>R$ 79,90</p>
-  <button onclick="adicionarAoCarrinho('Camiseta Oversized', 79.90)">Comprar</button>
-</div>
       <div class="produto camiseta">
-  <img src="img/camiseta1.jpg" alt="Camiseta">
-  <h3>Camiseta Preta</h3>
-  <p>R$ 79,90</p>
-  <button onclick="adicionarAoCarrinho('Camiseta Preta', 79.90)">Comprar</button>
-</div>
-   <div class="produto camiseta">
-  <img src="img/camiseta1.jpg" alt="Camiseta">
-  <h3>Camiseta Polo</h3>
-  <p>R$ 69,90</p>
-  <button onclick="adicionarAoCarrinho('Camiseta Polo', 69.90)">Comprar</button>
-</div>
+        <img src="img/camiseta1.jpg" alt="Camiseta">
+        <h3>Camisa Branca</h3>
+        <p>R$ 79,90</p>
+        <button onclick="adicionarAoCarrinho('Camisa Branca', 79.90)">Comprar</button>
+      </div>
 
+      <div class="produto camiseta">
+        <img src="img/camiseta1.jpg" alt="Camiseta">
+        <h3>Camiseta Oversized</h3>
+        <p>R$ 79,90</p>
+        <button onclick="adicionarAoCarrinho('Camiseta Oversized', 79.90)">Comprar</button>
+      </div>
+
+      <div class="produto camiseta">
+        <img src="img/camiseta1.jpg" alt="Camiseta">
+        <h3>Camiseta Preta</h3>
+        <p>R$ 79,90</p>
+        <button onclick="adicionarAoCarrinho('Camiseta Preta', 79.90)">Comprar</button>
+      </div>
+
+      <div class="produto camiseta">
+        <img src="img/camiseta1.jpg" alt="Camiseta">
+        <h3>Camiseta Polo</h3>
+        <p>R$ 69,90</p>
+        <button onclick="adicionarAoCarrinho('Camiseta Polo', 69.90)">Comprar</button>
+      </div>
     </section>
 
-<section id="carrinho">
-  <h2><i class="fas fa-shopping-cart"></i> Carrinho</h2>
-  <ul id="itens-carrinho"></ul>
-  <p>Total de itens: <span id="quantidade">0</span></p>
-  <button onclick="finalizarCompra()" class="btn-finalizar">Finalizar Compra</button>
-  <p><strong>Total: R$ <span id="total">0.00</span></strong></p>
-</section>
-    
+    <section id="carrinho">
+      <h2><i class="fas fa-shopping-cart"></i> Carrinho</h2>
+      <ul id="itens-carrinho"></ul>
+      <p>Total de itens: <span id="quantidade">0</span></p>
+      <p><strong>Total: R$ <span id="total">0.00</span></strong></p>
+      <button onclick="finalizarCompra()" class="btn-finalizar">Finalizar Compra</button>
+
+      <!-- Modal de Confirmação -->
+      <div id="modal-confirmacao" class="modal">
+        <div class="modal-conteudo">
+          <span class="fechar" onclick="fecharModal()">&times;</span>
+          <h2>Pedido confirmado!</h2>
+          <p>Obrigado por comprar com a gente 😄</p>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
     <p>&copy; 2025 Loja Fashion. Todos os direitos reservados.</p>
   </footer>
-  
-<div id="carrinho">
-  <h2>Carrinho de Compras</h2>
-  <ul id="itens-carrinho"></ul>
-  <p><strong>Total:</strong> R$ <span id="total">0.00</span></p>
-
-  <button id="finalizar" onclick="finalizarCompra()">Finalizar Compra</button>
-
-  <!-- Modal de Confirmação -->
-  <div id="modal-confirmacao" class="modal">
-    <div class="modal-conteudo">
-      <span class="fechar" onclick="fecharModal()">&times;</span>
-      <h2>Pedido confirmado!</h2>
-      <p>Obrigado por comprar com a gente 😄</p>
-    </div>
-  </div>
-</div>
 
   <script src="script.js"></script>
 </body>
