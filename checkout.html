@@ -1,12 +1,98 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checkout - Loja Fashion</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout - UrbanStyle</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    header {
+      background-color: #111;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    section {
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #111;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      background-color: #111;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #333;
+    }
+
+    @media (max-width: 600px) {
+      main {
+        margin: 20px;
+        padding: 15px;
+      }
+    }
+  </style>
 </head>
 <body>
+
   <header>
     <h1>Checkout</h1>
     <a href="index.html">← Voltar para a loja</a>
@@ -37,7 +123,6 @@
   </main>
 
   <script>
-    // Carrega o carrinho do localStorage
     const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
     const lista = document.getElementById('resumo-pedido');
     const totalSpan = document.getElementById('total-checkout');
@@ -52,11 +137,9 @@
 
     totalSpan.textContent = total.toFixed(2);
 
-    // Simula envio
     function confirmarCompra(event) {
       event.preventDefault();
-      alert("Compra confirmada! Obrigado pela preferência 😊");
-
+      alert("✅ Compra confirmada! Obrigado pela preferência 😊");
       localStorage.removeItem('carrinho');
       window.location.href = "index.html";
     }
