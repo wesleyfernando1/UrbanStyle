@@ -369,3 +369,23 @@ footer {
   text-decoration: none;
   border-radius: 4px;
 }
+.avaliacoes {
+  margin-top: 10px;
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.avaliacoes p {
+  margin: 0 0 5px;
+  font-weight: bold;
+  color: #333;
+}
+.avaliacoes ul {
+  padding-left: 20px;
+  margin: 0;
+}
+.avaliacoes li {
+  margin-bottom: 4px;
+  list-style-type: disc;
+}
