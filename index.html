@@ -1,28 +1,203 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap" rel="stylesheet">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Compre roupas estilosas na UrbanStyle!">
   <title>UrbanStyle</title>
+
   <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a2e0b6e6fd.js" crossorigin="anonymous"></script>
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+      color: #333;
+    }
+
+    header {
+      background-color: #111;
+      color: #fff;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .navbar a {
+      color: #fff;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    #modo-escuro {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      padding: 8px;
+      border: none;
+      background: #333;
+      color: #fff;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    #filtros {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    #filtros button {
+      margin: 5px;
+      padding: 10px 14px;
+      border: none;
+      background-color: #333;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .produtos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .produto {
+      width: 250px;
+      background-color: #f8f8f8;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .produto img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    button, .btn-finalizar {
+      background-color: #111;
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 8px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    button:hover, .btn-finalizar:hover {
+      background-color: #444;
+    }
+
+    .avaliacoes {
+      margin-top: 10px;
+      background-color: #eee;
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 14px;
+      text-align: left;
+    }
+
+    .avaliacoes p {
+      font-weight: bold;
+    }
+
+    .avaliacoes li {
+      margin-left: 20px;
+    }
+
+    #carrinho {
+      margin: 40px auto;
+      max-width: 600px;
+      padding: 20px;
+      background-color: #f3f3f3;
+      border-radius: 10px;
+    }
+
+    #modal-confirmacao {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-conteudo {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .fechar {
+      float: right;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    #notificacao {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      display: none;
+    }
+
+    #notificacao.ativa {
+      display: block;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #111;
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .produtos {
+        flex-direction: column;
+        align-items: center;
+      }
+      .produto {
+        width: 90%;
+      }
+    }
+  </style>
 </head>
+
 <body>
   <button id="modo-escuro" onclick="alternarModo()">🌙 Modo Escuro</button>
 
-  <header role="banner" aria-label="Cabeçalho do site">
+  <header>
     <h1><i class="fas fa-tshirt"></i> UrbanStyle</h1>
-    <nav class="navbar" role="navigation" aria-label="Menu de navegação principal">
+    <nav class="navbar">
       <a href="index.html">Home</a>
       <a href="contato.html">Contato</a>
     </nav>
   </header>
 
-  <main role="main" aria-label="Conteúdo principal">
-    <section id="filtros" aria-label="Filtros de categorias">
+  <main>
+    <section id="filtros">
       <button onclick="filtrarProdutos('todos')">Todos</button>
       <button onclick="filtrarProdutos('camiseta')">Camisetas</button>
       <button onclick="filtrarProdutos('calca')">Calças</button>
@@ -31,58 +206,55 @@
       <button onclick="filtrarProdutos('tenis')">Tênis</button>
     </section>
 
-    <section id="produtos" class="produtos" aria-label="Lista de produtos">
-      <div class="produto camiseta">
-        <img src="img/camiseta1.jpg" alt="Camisa branca de algodão">
+    <section id="produtos" class="produtos">
+      <article class="produto camiseta">
+        <img src="img/camiseta1.jpg" alt="Camisa branca de algodão básica">
         <h3>Camisa Branca</h3>
         <p>R$ 79,90</p>
         <button onclick="adicionarAoCarrinho('Camisa Branca', 79.90)">Comprar</button>
-      </div>
+      </article>
 
-    <div class="produto camiseta">
-  <img src="img/camiseta1.jpg" alt="Camiseta Oversized preta básica">
-  <h3>Camiseta Oversized</h3>
-  <p>R$ 79,90</p>
-  <button onclick="adicionarAoCarrinho('Camiseta Oversized', 79.90)">Comprar</button>
+      <article class="produto camiseta">
+        <img src="img/camiseta1.jpg" alt="Camiseta Oversized preta básica">
+        <h3>Camiseta Oversized</h3>
+        <p>R$ 79,90</p>
+        <button onclick="adicionarAoCarrinho('Camiseta Oversized', 79.90)">Comprar</button>
+        <div class="avaliacoes">
+          <p><strong>⭐ 4.8</strong> - 12 avaliações</p>
+          <ul>
+            <li>"Ótima qualidade!" — Ana</li>
+            <li>"Ficou perfeita no corpo" — João</li>
+            <li>"Chegou super rápido!" — Carla</li>
+          </ul>
+        </div>
+      </article>
 
-  <div class="avaliacoes">
-    <p><strong>⭐ 4.8</strong> - 12 avaliações</p>
-    <ul>
-      <li>"Ótima qualidade!" — Ana</li>
-      <li>"Ficou perfeita no corpo" — João</li>
-      <li>"Chegou super rápido!" — Carla</li>
-    </ul>
-  </div>
-</div>
+      <article class="produto camiseta">
+        <img src="img/camiseta1.jpg" alt="Camiseta preta básica casual">
+        <h3>Camiseta Preta Básica</h3>
+        <p>R$ 79,90</p>
+        <button onclick="adicionarAoCarrinho('Camiseta Preta Básica', 79.90)">Comprar</button>
+        <div class="avaliacoes">
+          <p><strong>⭐ 4.7</strong> - 8 avaliações</p>
+          <ul>
+            <li>"Muito confortável" — Lucas</li>
+            <li>"Ótimo custo-benefício" — Marina</li>
+          </ul>
+        </div>
+      </article>
+    </section>
 
- <div class="produto camiseta">
-  <img src="img/camiseta1.jpg" alt="Camiseta preta básica">
-  <h3>Camiseta preta basica</h3>
-  <p>R$ 79,90</p>
-  <button onclick="adicionarAoCarrinho('Camiseta preta basica', 79.90)">Comprar</button>
-
-  <div class="avaliacoes">
-    <p><strong>⭐ 4.8</strong> - 12 avaliações</p>
-    <ul>
-      <li>"Ótima qualidade!" — Ana</li>
-      <li>"Ficou perfeita no corpo" — João</li>
-      <li>"Chegou super rápido!" — Carla</li>
-    </ul>
-  </div>
-</div>
-
-    <section id="carrinho" aria-label="Carrinho de compras">
+    <section id="carrinho">
       <h2><i class="fas fa-shopping-cart"></i> Carrinho</h2>
       <ul id="itens-carrinho"></ul>
       <p>Total de itens: <span id="quantidade">0</span></p>
       <p><strong>Total: R$ <span id="total">0.00</span></strong></p>
       <button onclick="finalizarCompra()" class="btn-finalizar">Finalizar Compra</button>
-<a href="checkout.html" class="btn-finalizar">Ir para o Checkout</a>
+      <a href="checkout.html" class="btn-finalizar">Ir para o Checkout</a>
 
-      <!-- Modal de Confirmação -->
-      <div id="modal-confirmacao" class="modal" role="dialog" aria-label="Confirmação de compra">
+      <div id="modal-confirmacao" class="modal">
         <div class="modal-conteudo">
-          <span class="fechar" onclick="fecharModal()" aria-label="Fechar janela">&times;</span>
+          <span class="fechar" onclick="fecharModal()">&times;</span>
           <h2>Pedido confirmado!</h2>
           <p>Obrigado por comprar com a gente 😄</p>
         </div>
@@ -90,7 +262,7 @@
     </section>
   </main>
 
-  <footer role="contentinfo" aria-label="Rodapé do site">
+  <footer>
     <p>&copy; 2025 UrbanStyle. Todos os direitos reservados.</p>
   </footer>
 
