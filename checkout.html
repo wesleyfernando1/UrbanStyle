@@ -83,6 +83,23 @@
       background-color: #333;
     }
 
+    .mensagem-sucesso {
+      display: none;
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      padding: 15px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      text-align: center;
+      animation: fadein 0.5s ease;
+    }
+
+    @keyframes fadein {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
     @media (max-width: 600px) {
       main {
         margin: 20px;
@@ -99,6 +116,10 @@
   </header>
 
   <main>
+    <div class="mensagem-sucesso" id="mensagem-sucesso">
+      ✅ Compra confirmada! Obrigado pela preferência 😊
+    </div>
+
     <section>
       <h2>Resumo do Pedido</h2>
       <ul id="resumo-pedido"></ul>
@@ -124,6 +145,12 @@
 
   <script>
     const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+    if (carrinho.length === 0) {
+      alert("Seu carrinho está vazio!");
+      window.location.href = "index.html";
+    }
+
     const lista = document.getElementById('resumo-pedido');
     const totalSpan = document.getElementById('total-checkout');
     let total = 0;
@@ -139,9 +166,17 @@
 
     function confirmarCompra(event) {
       event.preventDefault();
-      alert("✅ Compra confirmada! Obrigado pela preferência 😊");
+      const mensagem = document.getElementById("mensagem-sucesso");
+      mensagem.style.display = "block";
+
+      // Limpar carrinho e formulário
       localStorage.removeItem('carrinho');
-      window.location.href = "index.html";
+      event.target.reset();
+
+      // Redirecionar após alguns segundos
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 2500);
     }
   </script>
 </body>
