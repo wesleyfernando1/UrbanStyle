@@ -28,6 +28,10 @@ function atualizarCarrinho() {
   let total = 0;
   let quantidadeTotal = 0;
 
+  if (carrinho.length === 0) {
+    lista.innerHTML = '<li>Seu carrinho está vazio.</li>';
+  }
+
   carrinho.forEach(item => {
     const li = document.createElement('li');
     li.classList.add('item-animado');
@@ -49,7 +53,8 @@ function atualizarCarrinho() {
   const carrinhoDiv = document.getElementById('carrinho');
   carrinhoDiv.style.display = carrinho.length ? 'block' : 'none';
 
-  localStorage.setItem('carrinho', JSON.stringify(carrinho)); // <--- aqui salvamos
+  localStorage.setItem('carrinho', JSON.stringify(carrinho));
+  atualizarContadorCarrinho();
 }
 
 function aumentarQuantidade(nome) {
@@ -82,7 +87,12 @@ function finalizarCompra() {
   atualizarCarrinho();
   localStorage.removeItem('carrinho');
 
-  document.getElementById('modal-confirmacao').style.display = 'block';
+  const modal = document.getElementById('modal-confirmacao');
+  modal.style.display = 'flex';
+
+  setTimeout(() => {
+    modal.style.display = 'none';
+  }, 4000);
 }
 
 function fecharModal() {
@@ -97,4 +107,15 @@ function exibirNotificacao(mensagem) {
   setTimeout(() => {
     notificacao.classList.remove('ativa');
   }, 3000);
+}
+
+function abrirCarrinho() {
+  const carrinho = document.getElementById("carrinho");
+  carrinho.scrollIntoView({ behavior: "smooth" });
+}
+
+function atualizarContadorCarrinho() {
+  const contador = document.getElementById('contador-carrinho');
+  const quantidadeTotal = carrinho.reduce((total, item) => total + item.quantidade, 0);
+  contador.textContent = quantidadeTotal;
 }
