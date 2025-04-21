@@ -54,7 +54,8 @@ function atualizarCarrinho() {
   carrinhoDiv.style.display = carrinho.length ? 'block' : 'none';
 
   localStorage.setItem('carrinho', JSON.stringify(carrinho));
-  atualizarContadorCarrinho();
+
+  atualizarContadorCarrinho(); // Atualiza o botão flutuante também
 }
 
 function aumentarQuantidade(nome) {
