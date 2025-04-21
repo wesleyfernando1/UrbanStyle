@@ -32,9 +32,8 @@ function atualizarCarrinho() {
     li.style.borderBottom = "1px solid #ccc";
     li.style.paddingBottom = "8px";
 
-    // Miniatura da imagem (simples – personalizável)
     const img = document.createElement("img");
-    img.src = obterImagemProduto(item.nome); // função abaixo
+    img.src = obterImagemProduto(item.nome);
     img.alt = item.nome;
     img.style.width = "50px";
     img.style.marginRight = "10px";
@@ -73,11 +72,19 @@ function atualizarCarrinho() {
 }
 
 function obterImagemProduto(nome) {
-  if (nome.includes("Branca")) return "img/camiseta1.jpg";
-  if (nome.includes("Oversized")) return "img/camiseta1.jpg";
-  if (nome.includes("Preta")) return "img/camiseta1.jpg";
-  // Adicione mais casos conforme seus produtos
-  return "img/placeholder.jpg";
+  nome = nome.toLowerCase(); // deixa a comparação mais segura
+
+  if (nome.includes("branca")) return "img/camiseta1.jpg";
+  if (nome.includes("oversized")) return "img/camiseta1.jpg";
+  if (nome.includes("preta")) return "img/camiseta1.jpg";
+  if (nome.includes("tênis")) return "img/tenis1.jpg";
+  if (nome.includes("boné")) return "img/bone1.jpg";
+  if (nome.includes("moletom")) return "img/moletom1.jpg";
+  if (nome.includes("vestido")) return "img/vestido1.jpg";
+  if (nome.includes("blusa")) return "img/blusa1.jpg";
+  if (nome.includes("calça")) return "img/calca1.jpg";
+
+  return "img/placeholder.jpg"; // imagem genérica se não encontrar
 }
 
 function finalizarCompra() {
