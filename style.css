@@ -389,3 +389,34 @@ footer {
   margin-bottom: 4px;
   list-style-type: disc;
 }
+/* Botão Flutuante do Carrinho */
+#carrinho-flutuante {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #111;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#carrinho-flutuante:hover {
+  background-color: #333;
+  transform: scale(1.05);
+}
+
+#carrinho-flutuante span {
+  background-color: #00ffcc;
+  color: #111;
+  padding: 2px 8px;
+  border-radius: 12px;
+  margin-left: 6px;
+  font-size: 14px;
+  font-weight: bold;
+}
