@@ -72,7 +72,7 @@ function atualizarCarrinho() {
 }
 
 function obterImagemProduto(nome) {
-  if (nome.includes("Oversized")) return "imagens/camiseta1.jpg";
+  if (nome.includes("Oversized")) return "imagens/camiseta1oversized.jpg";
   if (nome.includes("Branca")) return "imagens/camiseta-branca.jpg";
   return "imagens/placeholder.jpg"; // Imagem padrão caso o produto não seja reconhecido
 }
