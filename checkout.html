@@ -1,125 +1,73 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Checkout - UrbanStyle</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
   <style>
-    * {
-      box-sizing: border-box;
+    .progresso {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px 0;
+      padding: 10px;
+      border-bottom: 2px solid #ccc;
       font-family: 'Poppins', sans-serif;
     }
 
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #f9f9f9;
-      color: #333;
-    }
-
-    header {
-      background-color: #111;
-      color: white;
-      padding: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    header a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    main {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 20px;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-
-    section {
-      margin-bottom: 30px;
-    }
-
-    h2 {
-      margin-top: 0;
-      color: #111;
-    }
-
-    ul {
-      padding-left: 20px;
-    }
-
-    form label {
-      display: block;
-      margin-bottom: 15px;
-      font-size: 14px;
-    }
-
-    input {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-
-    button {
-      background-color: #111;
-      color: white;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    button:hover {
-      background-color: #333;
-    }
-
-    .mensagem-sucesso {
-      display: none;
-      background-color: #d4edda;
-      color: #155724;
-      border: 1px solid #c3e6cb;
-      padding: 15px;
-      border-radius: 6px;
-      margin-bottom: 20px;
+    .progresso div {
+      flex: 1;
       text-align: center;
-      animation: fadein 0.5s ease;
+      position: relative;
+      color: #999;
     }
 
-    @keyframes fadein {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    .progresso div::before {
+      content: '';
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #ccc;
+      display: block;
+      margin: 0 auto 5px;
     }
 
-    @media (max-width: 600px) {
-      main {
-        margin: 20px;
-        padding: 15px;
-      }
+    .progresso .ativo {
+      font-weight: bold;
+      color: #000;
+    }
+
+    .progresso .ativo::before {
+      background: #000;
+    }
+
+    form input, form button {
+      display: block;
+      margin-top: 10px;
+      padding: 8px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .checkout-container {
+      padding: 20px;
+      font-family: 'Poppins', sans-serif;
     }
   </style>
 </head>
 <body>
-
-  <header>
+  <header class="checkout-container">
     <h1>Checkout</h1>
     <a href="index.html">← Voltar para a loja</a>
+
+    <div class="progresso">
+      <div class="ativo">Carrinho</div>
+      <div class="ativo">Dados</div>
+      <div>Confirmação</div>
+    </div>
   </header>
 
-  <main>
-    <div class="mensagem-sucesso" id="mensagem-sucesso">
-      ✅ Compra confirmada! Obrigado pela preferência 😊
-    </div>
-
+  <main class="checkout-container">
     <section>
       <h2>Resumo do Pedido</h2>
       <ul id="resumo-pedido"></ul>
@@ -145,12 +93,6 @@
 
   <script>
     const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-
-    if (carrinho.length === 0) {
-      alert("Seu carrinho está vazio!");
-      window.location.href = "index.html";
-    }
-
     const lista = document.getElementById('resumo-pedido');
     const totalSpan = document.getElementById('total-checkout');
     let total = 0;
@@ -166,17 +108,9 @@
 
     function confirmarCompra(event) {
       event.preventDefault();
-      const mensagem = document.getElementById("mensagem-sucesso");
-      mensagem.style.display = "block";
-
-      // Limpar carrinho e formulário
+      alert("Compra confirmada! Obrigado pela preferência 😊");
       localStorage.removeItem('carrinho');
-      event.target.reset();
-
-      // Redirecionar após alguns segundos
-      setTimeout(() => {
-        window.location.href = "index.html";
-      }, 2500);
+      window.location.href = "index.html";
     }
   </script>
 </body>
