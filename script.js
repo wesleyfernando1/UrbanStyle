@@ -110,10 +110,13 @@ function exibirNotificacao(mensagem) {
   }, 3000);
 }
 
-function abrirCarrinho() {
-  const carrinho = document.getElementById("carrinho");
-  carrinho.scrollIntoView({ behavior: "smooth" });
+function rolarParaCarrinho() {
+  const carrinhoSecao = document.getElementById('carrinho');
+  if (carrinhoSecao) {
+    carrinhoSecao.scrollIntoView({ behavior: 'smooth' });
+  }
 }
+
 
 function atualizarContadorCarrinho() {
   const contador = document.getElementById('contador-carrinho');
