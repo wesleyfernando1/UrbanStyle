@@ -72,19 +72,9 @@ function atualizarCarrinho() {
 }
 
 function obterImagemProduto(nome) {
-  nome = nome.toLowerCase(); // deixa a comparação mais segura
-
-  if (nome.includes("branca")) return "img/camiseta1.jpg";
-  if (nome.includes("oversized")) return "img/camiseta1.jpg";
-  if (nome.includes("preta")) return "img/camiseta1.jpg";
-  if (nome.includes("tênis")) return "img/tenis1.jpg";
-  if (nome.includes("boné")) return "img/bone1.jpg";
-  if (nome.includes("moletom")) return "img/moletom1.jpg";
-  if (nome.includes("vestido")) return "img/vestido1.jpg";
-  if (nome.includes("blusa")) return "img/blusa1.jpg";
-  if (nome.includes("calça")) return "img/calca1.jpg";
-
-  return "img/placeholder.jpg"; // imagem genérica se não encontrar
+  if (nome.includes("Oversized")) return "imagens/camiseta1.jpg";
+  if (nome.includes("Branca")) return "imagens/camiseta-branca.jpg";
+  return "imagens/placeholder.jpg"; // Imagem padrão caso o produto não seja reconhecido
 }
 
 function finalizarCompra() {
